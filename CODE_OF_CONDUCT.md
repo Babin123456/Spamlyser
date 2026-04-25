@@ -1,8 +1,8 @@
 # 📜 Code of Conduct 
 ![Community](https://img.shields.io/badge/Community-Welcoming-brightgreen?style=for-the-badge) 
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-blue?style=for-the-badge) 
-![Contributors](https://img.shields.io/github/contributors/eccentriccoder01/Spamlyser?style=for-the-badge) !
-[License](https://img.shields.io/github/license/eccentriccoder01/Spamlyser?style=for-the-badge)
+![Contributors](https://img.shields.io/github/contributors/theeccentriccoder/Spamlyser?style=for-the-badge) !
+[License](https://img.shields.io/github/license/theeccentriccoder/Spamlyser?style=for-the-badge)
 
 ## 👋 Welcome to Spamlyser
 At **Spamlyser**, we’re committed to creating a **respectful, inclusive, and safe community** for everyone. This Code of Conduct explains our standards, expected behaviors, and how we handle violations.
@@ -102,3 +102,4 @@ This Code of Conduct is adapted from:
 ## ❤️ Final Note
 Spamlyser is **more than a tool** — it’s a community. Let’s keep it welcoming, inclusive, and empowering for everyone 🚀  
 ![Community GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGxnMGpmaDl3MTR2aDIwZjlneTdkcHZkNGRlbTkxbm83ZHRoMnN4dCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/wIVA0zh5pt0G5YtcAL/giphy.gif)
+
