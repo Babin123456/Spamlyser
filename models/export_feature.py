@@ -4,11 +4,21 @@ from datetime import datetime
 from io import BytesIO
 from fpdf import FPDF
 
+
+def _pdf_safe(text):
+    """Make text safe for the core PDF font (helvetica), which only supports
+    latin-1. Characters outside that range — ₹, €, emoji, smart quotes, etc.,
+    all common in SMS spam — are replaced with "?" so the export always
+    produces a valid PDF instead of raising UnicodeEncodeError (legacy PyFPDF)
+    or FPDFUnicodeEncodingException (fpdf2)."""
+    return str(text).encode("latin-1", "replace").decode("latin-1")
+
+
 def dataframe_to_pdf(df, title="Spamlyser Results"):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("helvetica", "B", 14)
-    pdf.cell(0, 10, title, ln=True, align="C")
+    pdf.cell(0, 10, _pdf_safe(title), ln=True, align="C")
     pdf.ln(5)
     pdf.set_font("helvetica", size=9)
     col_width = pdf.w / (len(df.columns) + 1)
@@ -16,20 +26,25 @@ def dataframe_to_pdf(df, title="Spamlyser Results"):
 
     # Header
     for col in df.columns:
-        pdf.cell(col_width, row_height, str(col), border=1)
+        pdf.cell(col_width, row_height, _pdf_safe(col), border=1)
     pdf.ln(row_height)
 
     # Rows
     for i in range(len(df)):
         for col in df.columns:
-            val = str(df.iloc[i][col])
+            val = _pdf_safe(df.iloc[i][col])
             if len(val) > 25:
                 val = val[:22] + "..."
             pdf.cell(col_width, row_height, val, border=1)
         pdf.ln(row_height)
 
-    pdf_bytes = BytesIO(pdf.output(dest="S").encode('latin-1'))
+    # fpdf2's output() returns a bytearray; legacy PyFPDF's output(dest="S")
+    # returns a str. Handle both so the export works regardless of which
+    # fpdf fork the environment resolves "fpdf" to.
+    raw = pdf.output(dest="S")
+    pdf_bytes = BytesIO(raw.encode("latin-1") if isinstance(raw, str) else bytes(raw))
     return pdf_bytes
+
 
 def export_results_button(history, filename_prefix="spamlyser_results"):
     if not history:
