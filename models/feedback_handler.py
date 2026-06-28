@@ -88,9 +88,7 @@ class FeedbackHandler:
     def get_all_feedback(self) -> List[Dict[str, Any]]:
         try:
             conn = _get_connection(self.db_path)
-            rows = conn.execute(
-                "SELECT id, data FROM feedback ORDER BY id"
-            ).fetchall()
+            rows = conn.execute("SELECT id, data FROM feedback ORDER BY id").fetchall()
             return [json.loads(row["data"]) for row in rows]
         except Exception:
             return []
@@ -120,9 +118,7 @@ class FeedbackHandler:
 
         for feedback in feedbacks:
             feedback_type = feedback.get("feedback_type", "unknown")
-            stats["by_type"][feedback_type] = (
-                stats["by_type"].get(feedback_type, 0) + 1
-            )
+            stats["by_type"][feedback_type] = stats["by_type"].get(feedback_type, 0) + 1
 
         return stats
 

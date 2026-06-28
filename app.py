@@ -1375,7 +1375,7 @@ def show_analyzer_page():
                 # Batch processing options
                 col1, col2 = st.columns(2)
                 with col1:
-                    batch_size = st.number_input(
+                    _batch_size = st.number_input(
                         "Batch Size",
                         min_value=10,
                         max_value=1000,
