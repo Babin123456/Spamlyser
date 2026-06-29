@@ -256,15 +256,22 @@ class EnsembleSpamClassifier:
                 label = pred["label"].upper()
                 confidence = pred["score"]
 
-                # Weight the vote by confidence
+                accuracy = 1.0
+                if hasattr(self, 'performance_tracker') and self.performance_tracker:
+                    stats = self.performance_tracker.get_model_stats(model_name)
+                    accuracy = stats.get("recent_accuracy", 1.0)
+                
+                # Weight the vote by confidence and accuracy
+                adjusted_confidence = confidence * accuracy
+
                 if label == "SPAM":
-                    spam_weight += confidence
-                    weight_contribution_spam = confidence
+                    spam_weight += adjusted_confidence
+                    weight_contribution_spam = adjusted_confidence
                     weight_contribution_ham = 0.0
                 else:
-                    ham_weight += confidence
+                    ham_weight += adjusted_confidence
                     weight_contribution_spam = 0.0
-                    weight_contribution_ham = confidence
+                    weight_contribution_ham = adjusted_confidence
 
                 model_votes.append(
                     {
