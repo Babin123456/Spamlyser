@@ -1,14 +1,32 @@
 import sys
 from unittest.mock import MagicMock
 
-# 1. Mock torch and transformers before any package code loads
-sys.modules["torch"] = MagicMock()
-sys.modules["torch"].cuda = MagicMock()
+# 1. Mock optional heavy / UI / ML dependencies before any package code loads.
+_ALWAYS_MOCKED = [
+    "torch",
+    "torch.cuda",
+    "transformers",
+    "streamlit",
+    "lime",
+    "lime.lime_text",
+    "plotly",
+    "plotly.express",
+    "plotly.graph_objects",
+    "sklearn",
+    "sentencepiece",
+    "datasets",
+]
+for _mod in _ALWAYS_MOCKED:
+    sys.modules.setdefault(_mod, MagicMock())
+
 sys.modules["torch"].cuda.is_available.return_value = False
 
-sys.modules["transformers"] = MagicMock()
-sys.modules["transformers"].AutoTokenizer = MagicMock()
-sys.modules["transformers"].AutoModelForSequenceClassification = MagicMock()
+# Conditionally mock fpdf only when it is not installed.
+if "fpdf" not in sys.modules:
+    try:
+        __import__("fpdf")
+    except ImportError:
+        sys.modules["fpdf"] = MagicMock()
 
 # Setup a default mock pipeline that returns structured scores for tests
 mock_pipeline = MagicMock()
