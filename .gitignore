@@ -1,3 +1,28 @@
 venv
 __pycache__
 *.ps1
+
+# Runtime data
+*.db
+*.bak
+.backups/
+data/
+
+# Environment / secrets
+.env
+.streamlit/secrets.toml
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Byte-compiled
+*.pyc
+*.pyo
+*.pyd
