@@ -65,7 +65,13 @@ class ConfidenceCalibrator:
 
     def fit_temperature(self, y_true: np.ndarray, y_prob: np.ndarray) -> float:
         """Find the optimal temperature T using negative log likelihood minimization."""
-        from scipy.optimize import minimize
+        try:
+            from scipy.optimize import minimize
+        except ImportError:
+            import warnings
+            warnings.warn("scipy not found, skipping temperature fitting")
+            self.temperature = 1.0
+            return 1.0
 
         y_true = np.array(y_true)
         y_prob = np.array(y_prob)
@@ -89,7 +95,14 @@ class ConfidenceCalibrator:
 
     def fit_platt(self, y_true: np.ndarray, y_prob: np.ndarray) -> Tuple[float, float]:
         """Find Platt scaling parameters A and B using logistic regression."""
-        from scipy.optimize import minimize
+        try:
+            from scipy.optimize import minimize
+        except ImportError:
+            import warnings
+            warnings.warn("scipy not found, skipping Platt scaling")
+            self.platt_a = 1.0
+            self.platt_b = 0.0
+            return self.platt_a, self.platt_b
 
         y_true = np.array(y_true)
         y_prob = np.array(y_prob)
