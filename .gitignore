@@ -1,3 +1,13 @@
 venv
 __pycache__
 *.ps1
+
+# Data files (created at runtime)
+*.db
+*.bak
+.backups/
+data/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
