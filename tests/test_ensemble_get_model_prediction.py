@@ -8,24 +8,12 @@ but EnsembleSpamClassifier defined no such method, causing:
 Fix: add get_model_prediction(model_name, message) to EnsembleSpamClassifier
 returning a PredictionResult fallback when no real inference pipeline is wired up.
 """
-import sys
-import os
-import types
-
-# Stub heavy dependencies before any models import
-sys.modules.setdefault("numpy", types.ModuleType("numpy"))
-import unittest.mock as _mock  # noqa: E402
-sys.modules["numpy"].var = _mock.MagicMock(return_value=0.0)
-sys.modules["numpy"].mean = _mock.MagicMock(return_value=0.5)
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from models.ensemble_classifier_method import (  # noqa: E402
+from models.ensemble_classifier_method import (
     EnsembleSpamClassifier,
     ModelPerformanceTracker,
     PredictionResult,
 )
-from models.batch_processor import BatchProcessor  # noqa: E402
+from models.batch_processor import BatchProcessor
 
 
 # ---------------------------------------------------------------------------

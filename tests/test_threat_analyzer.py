@@ -1,14 +1,6 @@
-"""
-Test file for threat analyzer functionality
-"""
+"""Tests for threat analyzer."""
 
-import sys
-import os
-
-# Add the parent directory to sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from threat_analyzer import (
+from models.threat_analyzer import (
     classify_threat_type,
     get_threat_specific_advice,
     THREAT_CATEGORIES,
