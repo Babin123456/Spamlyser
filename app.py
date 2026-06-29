@@ -9253,9 +9253,12 @@ if analyse_btn and user_sms.strip():
 
                 # Generate and display LIME explanation for single model predictions
                 with st.expander(
-                    "🔍 Show Model Explainability (LIME Analysis)", expanded=True
+                    "🔍 Show Model Explainability", expanded=True
                 ):
-                    from models.model_explainer import ModelExplainer
+                    try:
+                        from models.model_explainer import ModelExplainer as Explainer
+                    except ImportError:
+                        from models.simple_explainer import SimpleExplainer as Explainer
 
                     def predict_fn(texts):
                         results = classifier(list(texts))
@@ -9269,14 +9272,13 @@ if analyse_btn and user_sms.strip():
                                 probs.append([scr, 1.0 - scr])
                         return np.array(probs)
 
-                    explainer = ModelExplainer(predict_fn, class_names=["HAM", "SPAM"])
-                    # Use lower num_samples for speed to prevent prediction bottlenecks
+                    explainer = Explainer(predict_fn, class_names=["HAM", "SPAM"])
                     explanation_data = explainer.explain_prediction(
-                        cleaned_sms, num_features=10, num_samples=150
+                        cleaned_sms, num_features=10
                     )
 
                     if "error" in explanation_data:
-                        st.error(f"LIME Analysis Error: {explanation_data['error']}")
+                        st.error(f"Explanation Error: {explanation_data['error']}")
                     else:
                         # Extract important words for prediction
                         spam_features = []

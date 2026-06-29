@@ -17,3 +17,19 @@ from .custom_rules_manager import (
     save_custom_rules,
     check_custom_rules,
 )
+from .simple_explainer import SimpleExplainer, SPAM_KEYWORDS
+
+__all__ = [
+    "BatchProcessor",
+    "export_results_button",
+    "classify_threat_type",
+    "get_threat_specific_advice",
+    "THREAT_CATEGORIES",
+    "WordAnalyzer",
+    "ConfidenceCalibrator",
+    "load_custom_rules",
+    "save_custom_rules",
+    "check_custom_rules",
+    "SimpleExplainer",
+    "SPAM_KEYWORDS",
+]
