@@ -2,7 +2,7 @@
 Module for handling batch processing of SMS messages using ensemble models.
 """
 
-from collections.abc import Generator
+from collections.abc import Callable, Generator
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple
@@ -128,7 +128,7 @@ class BatchProcessor:
         self,
         messages: list[str],
         batch_size: int = 100,
-        progress_callback: callable | None = None,
+        progress_callback: Callable | None = None,
     ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         """
         Process a batch of messages with progress tracking.

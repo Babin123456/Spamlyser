@@ -7705,7 +7705,7 @@ def get_loaded_models():
         )
         models[name] = load_model_if_needed(
             name,
-            _progress_callback=lambda msg: update_progress(
+            _progress_callback=lambda msg, i=i, name=name: update_progress(
                 (i / total_models) * 0.9, f"{name}: {msg}"
             ),
         )
