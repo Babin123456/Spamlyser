@@ -123,7 +123,9 @@ def save_custom_rules(rules: dict[str, list]) -> bool:
 
     # Warn about invalid blocklist patterns at save time so users get early
     # feedback rather than silent failures during analysis.
-    invalid = [p for p in rules.get("blocklist", []) if _compile_blocklist_pattern(p) is None]
+    invalid = [
+        p for p in rules.get("blocklist", []) if _compile_blocklist_pattern(p) is None
+    ]
     if invalid:
         _logger.warning(
             "The following blocklist patterns are invalid regexes and will be "

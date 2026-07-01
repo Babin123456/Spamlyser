@@ -23,12 +23,14 @@ def isolated_rules_file(tmp_path):
     with patch.dict(os.environ, {_TEMP_RULES_KEY: rules_path}):
         # Reload the path-resolution function so it picks up the env change
         import importlib
+
         import models.custom_rules_manager as crm
 
         importlib.reload(crm)
         yield rules_path
     # Reload once more after the test to restore the module state
     import importlib
+
     import models.custom_rules_manager as crm
 
     importlib.reload(crm)
@@ -103,7 +105,9 @@ def test_save_warns_on_invalid_regex_but_still_saves(caplog):
 
 
 def test_allowlist_matched_first():
-    save_custom_rules({"allowlist": ["trusted-partner.com"], "blocklist": [r"\bblock-me\b"]})
+    save_custom_rules(
+        {"allowlist": ["trusted-partner.com"], "blocklist": [r"\bblock-me\b"]}
+    )
     result = check_custom_rules("Hello from client@trusted-partner.com, please reply.")
     assert result == "HAM"
 
@@ -114,7 +118,9 @@ def test_allowlist_no_match_returns_none():
 
 
 def test_blocklist_regex_matched():
-    save_custom_rules({"allowlist": [], "blocklist": [r"\bwin-free-100k\b", "click-now-scam"]})
+    save_custom_rules(
+        {"allowlist": [], "blocklist": [r"\bwin-free-100k\b", "click-now-scam"]}
+    )
     assert check_custom_rules("Congrats! You can win-free-100k today!") == "SPAM"
 
 
@@ -127,7 +133,9 @@ def test_allowlist_takes_priority_over_blocklist():
     save_custom_rules(
         {"allowlist": ["safe-sender.com"], "blocklist": [r"\bwin-free-100k\b"]}
     )
-    result = check_custom_rules("Safe email from safe-sender.com containing win-free-100k!")
+    result = check_custom_rules(
+        "Safe email from safe-sender.com containing win-free-100k!"
+    )
     assert result == "HAM"
 
 
