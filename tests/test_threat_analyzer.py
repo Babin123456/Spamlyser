@@ -1,17 +1,9 @@
-"""
-Test file for threat analyzer functionality
-"""
+"""Tests for threat analyzer."""
 
-import sys
-import os
-
-# Add the parent directory to sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from threat_analyzer import (
+from models.threat_analyzer import (
+    THREAT_CATEGORIES,
     classify_threat_type,
     get_threat_specific_advice,
-    THREAT_CATEGORIES,
 )
 
 
@@ -45,7 +37,7 @@ def test_threat_classification():
 
     # Test non-spam message
     ham_message = "Hey mom, I'll be home for dinner at 6pm."
-    threat_type, confidence, metadata = classify_threat_type(ham_message, 0.1)
+    threat_type, confidence, _metadata = classify_threat_type(ham_message, 0.1)
     assert threat_type is None
 
 
