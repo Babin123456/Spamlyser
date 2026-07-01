@@ -1,6 +1,5 @@
 """Tests for the model optimisation and export script."""
 
-from pathlib import Path
 from models.optimize_model import export_onnx, export_torchscript
 
 
