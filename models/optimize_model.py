@@ -58,7 +58,9 @@ def export_torchscript(model, output: Path, seq_len: int):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Export or optimise a HuggingFace model")
+    parser = argparse.ArgumentParser(
+        description="Export or optimise a HuggingFace model"
+    )
     parser.add_argument(
         "--model-id",
         default="distilbert-base-uncased",
