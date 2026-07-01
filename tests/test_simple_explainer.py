@@ -1,6 +1,6 @@
 """Tests for the lightweight SimpleExplainer module."""
 
-from models.simple_explainer import SPAM_KEYWORDS, HAM_KEYWORDS, SimpleExplainer
+from models.simple_explainer import HAM_KEYWORDS, SPAM_KEYWORDS, SimpleExplainer
 
 
 def test_default_spam_keywords_are_populated():
@@ -35,11 +35,19 @@ def test_explain_prediction_finds_spam_keywords():
 
 def test_explain_prediction_ham_finds_indicators():
     explainer = SimpleExplainer()
-    result = explainer.explain_prediction("Hey, hello! Good morning, let me know when we can meet.")
+    result = explainer.explain_prediction(
+        "Hey, hello! Good morning, let me know when we can meet."
+    )
     ham_features = result["features"][0]["important_words"]
     words = [f["word"] for f in ham_features]
     assert len(ham_features) > 0
-    assert "hello" in words or "let me know" in words or "meeting" in words or "hi" in words or "hey" in words
+    assert (
+        "hello" in words
+        or "let me know" in words
+        or "meeting" in words
+        or "hi" in words
+        or "hey" in words
+    )
 
 
 def test_visualize_explanation_returns_feature_importance():
