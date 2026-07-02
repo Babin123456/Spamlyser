@@ -1,3 +1,4 @@
+from models.recovery_agent import attempt_self_healing
 """
 Feedback handler for Spamlyser Pro.
 Handles storing and retrieving user feedback with SQLite for concurrent write safety.
