@@ -28,6 +28,17 @@ _local = threading.local()
 _logger = logging.getLogger(__name__)
 
 
+def _format_rating_stars(value: Any) -> str:
+    """Return a safe star rating string for feedback exports."""
+    if value is None or isinstance(value, bool):
+        return ""
+    try:
+        rating = int(float(value))
+    except (TypeError, ValueError):
+        return ""
+    return "⭐" * max(rating, 0)
+
+
 def _open_connection(db_path: str) -> sqlite3.Connection:
     """Create a brand-new SQLite connection with WAL mode and busy timeout."""
     conn = sqlite3.connect(db_path, check_same_thread=False)
@@ -190,7 +201,7 @@ class FeedbackHandler:
 ## User Feedback
 
 **Type:** {feedback.get("feedback_type", "Not specified")}
-**Rating:** {"⭐" * feedback.get("rating", 0)}
+**Rating:** {_format_rating_stars(feedback.get("rating"))}
 **Date:** {feedback.get("timestamp", "Not recorded")}
 
 ### Message:
