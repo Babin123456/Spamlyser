@@ -31,6 +31,13 @@ def test_huggingface_label_0_and_label_1_mapping():
     assert normalize_label("label_0") == "HAM"
 
 
+def test_numeric_and_dash_separated_label_mapping():
+    assert normalize_label("1") == "SPAM"
+    assert normalize_label("0") == "HAM"
+    assert normalize_label("LABEL-1") == "SPAM"
+    assert normalize_label("LABEL-0") == "HAM"
+
+
 def test_whitespace_padded_label():
     assert normalize_label("  SPAM  ") == "SPAM"
 

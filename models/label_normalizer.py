@@ -24,8 +24,8 @@ fixing both the crash and the silent-misclassification risk in one place.
 from typing import Optional
 
 # Raw labels that mean "spam" / "ham" across the models this app loads.
-_SPAM_LABELS = {"SPAM", "LABEL_1"}
-_HAM_LABELS = {"HAM", "LABEL_0"}
+_SPAM_LABELS = {"SPAM", "LABEL_1", "LABEL-1", "1"}
+_HAM_LABELS = {"HAM", "LABEL_0", "LABEL-0", "0"}
 
 
 def normalize_label(raw_label, spam_probability: float | None = None) -> str:
