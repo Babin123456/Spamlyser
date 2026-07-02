@@ -1,1 +1,0 @@
-# Deprecated stub for rules
