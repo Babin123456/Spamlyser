@@ -12,6 +12,7 @@ from .custom_rules_manager import (
 )
 from .export_feature import export_results_button
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
+from .webhook_notifier import WebhookNotifier
 from .storage_manager import StorageManager, default_json_validator
 from .threat_analyzer import (
     THREAT_CATEGORIES,
@@ -27,6 +28,7 @@ __all__ = [
     "ConfidenceCalibrator",
     "SimpleExplainer",
     "StorageManager",
+    "WebhookNotifier",
     "WordAnalyzer",
     "check_custom_rules",
     "classify_threat_type",
