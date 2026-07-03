@@ -57,6 +57,10 @@ PERFORMANCE_DATA_PATH: str = os.getenv(
     "SPAMLYSER_PERFORMANCE_DATA", str(DATA_DIR / "performance_data.json")
 )
 
+ENCRYPT_REPORT_BY_DEFAULT: bool = (
+    os.getenv("SPAMLYSER_ENCRYPT_REPORT", "false").lower() == "true"
+)
+
 # ── Application ────────────────────────────────────────────────────────────
 APP_TITLE: str = os.getenv("SPAMLYSER_APP_TITLE", "Spamlyser Pro - Ensemble Edition")
 APP_ICON: str = os.getenv("SPAMLYSER_APP_ICON", "🛡️")

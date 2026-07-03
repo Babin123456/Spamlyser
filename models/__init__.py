@@ -10,6 +10,7 @@ from .custom_rules_manager import (
     load_custom_rules,
     save_custom_rules,
 )
+from .encrypted_report import ReportEncryptor
 from .export_feature import export_results_button
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
 from .storage_manager import StorageManager, default_json_validator
@@ -21,6 +22,7 @@ from .threat_analyzer import (
 from .word_analyzer import WordAnalyzer
 
 __all__ = [
+    "ReportEncryptor",
     "SPAM_KEYWORDS",
     "THREAT_CATEGORIES",
     "BatchProcessor",
