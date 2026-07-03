@@ -11,6 +11,7 @@ from .custom_rules_manager import (
     save_custom_rules,
 )
 from .export_feature import export_results_button
+from .language_detector import detect_language, is_language_supported
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
 from .storage_manager import StorageManager, default_json_validator
 from .threat_analyzer import (
@@ -31,8 +32,10 @@ __all__ = [
     "check_custom_rules",
     "classify_threat_type",
     "default_json_validator",
+    "detect_language",
     "export_results_button",
     "get_threat_specific_advice",
+    "is_language_supported",
     "load_custom_rules",
     "save_custom_rules",
 ]

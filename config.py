@@ -77,6 +77,14 @@ MAX_CUSTOM_RULES_PER_LIST: int = int(
     os.getenv("SPAMLYSER_MAX_CUSTOM_RULES_PER_LIST", "500")
 )
 
+LANGUAGE_DETECTION_ENABLED: bool = (
+    os.getenv("SPAMLYSER_LANG_DETECT", "true").lower() == "true"
+)
+
+LANGUAGE_DETECTION_CONFIDENCE_THRESHOLD: float = float(
+    os.getenv("SPAMLYSER_LANG_CONFIDENCE", "0.3")
+)
+
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 def ensure_data_dir() -> Path:
