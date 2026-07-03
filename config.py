@@ -53,6 +53,10 @@ CUSTOM_RULES_PATH: str = os.getenv(
     "SPAMLYSER_CUSTOM_RULES", str(DATA_DIR / "custom_rules.json")
 )
 
+CATEGORIES_CONFIG_PATH: str = os.getenv(
+    "SPAMLYSER_CATEGORIES_CONFIG", str(DATA_DIR / "categories.json")
+)
+
 PERFORMANCE_DATA_PATH: str = os.getenv(
     "SPAMLYSER_PERFORMANCE_DATA", str(DATA_DIR / "performance_data.json")
 )
