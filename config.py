@@ -77,6 +77,10 @@ MAX_CUSTOM_RULES_PER_LIST: int = int(
     os.getenv("SPAMLYSER_MAX_CUSTOM_RULES_PER_LIST", "500")
 )
 
+BENCHMARK_SAMPLE_SIZE: int = int(os.getenv("SPAMLYSER_BENCHMARK_SAMPLES", "10"))
+
+BENCHMARK_WARMUP_RUNS: int = int(os.getenv("SPAMLYSER_BENCHMARK_WARMUP", "1"))
+
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 def ensure_data_dir() -> Path:

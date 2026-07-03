@@ -3,6 +3,17 @@ Spamlyser Pro Models Package
 This package contains all the model-related functionality for SMS threat detection.
 """
 
+# Import benchmark helpers from the top-level benchmarks package (optional).
+try:
+    from benchmarks.benchmark_runner import (
+        confidence_distribution,
+        latency_benchmark,
+        run_all,
+        summary,
+    )
+except ImportError:
+    pass
+
 from .batch_processor import BatchProcessor
 from .calibration import ConfidenceCalibrator
 from .custom_rules_manager import (
@@ -30,9 +41,13 @@ __all__ = [
     "WordAnalyzer",
     "check_custom_rules",
     "classify_threat_type",
+    "confidence_distribution",
     "default_json_validator",
     "export_results_button",
     "get_threat_specific_advice",
+    "latency_benchmark",
     "load_custom_rules",
+    "run_all",
     "save_custom_rules",
+    "summary",
 ]
