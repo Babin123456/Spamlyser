@@ -32,6 +32,14 @@ def load_global_styles():
         except Exception as e:
             st.warning(f"Could not load global styles from {css_path}: {e}")
 
+    # Also inject theme CSS variables
+    try:
+        from assets.theme_manager import theme_css_variables
+
+        st.markdown(theme_css_variables(), unsafe_allow_html=True)
+    except ImportError:
+        pass
+
 
 # navigate_to is intentionally NOT stored as a module-level variable.
 # Callers must pass it explicitly to show_feedback_page(navigate_to=...).

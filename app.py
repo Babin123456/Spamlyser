@@ -23,6 +23,20 @@ try:
 except Exception:
     pass
 
+# Inject accessibility enhancements and theme manager
+try:
+    from assets.accessibility import inject_accessibility
+
+    inject_accessibility()
+except ImportError:
+    pass
+try:
+    from assets.theme_manager import init_theme, inject_theme_toggle
+
+    init_theme()
+except ImportError:
+    pass
+
 # Initialize models and check availability
 try:
     from models.model_init import MODEL_STATUS
@@ -7817,6 +7831,16 @@ with st.sidebar:
         if selected_ensemble_method == "adaptive_threshold":
             st.markdown("#### 🎛️ Threshold Settings")
             base_threshold = st.slider("Base Threshold", 0.1, 0.9, 0.5, 0.05)
+
+    st.markdown("---")
+
+    # Theme toggle from the accessibility / theme-manager module
+    try:
+        from assets.theme_manager import inject_theme_toggle
+
+        inject_theme_toggle()
+    except ImportError:
+        pass
 
     st.markdown("---")
 
