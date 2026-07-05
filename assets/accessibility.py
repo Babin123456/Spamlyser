@@ -74,6 +74,7 @@ def contrast_safe_color(hex_color: str, against: str = "#1a1a1a") -> str:
     Simple luminance-based heuristic — does NOT replace a proper contrast
     checker but catches the worst violations.
     """
+
     def _lum(hex_c: str) -> float:
         hex_c = hex_c.lstrip("#")
         if len(hex_c) != 6:
