@@ -102,9 +102,7 @@ def evaluate_compound_rule(rule: dict[str, Any], text: str) -> bool | None:
     return any(results)
 
 
-def check_compound_rules(
-    text: str, compounds: list[dict[str, Any]]
-) -> str | None:
+def check_compound_rules(text: str, compounds: list[dict[str, Any]]) -> str | None:
     """Run *text* through all compound rules.
 
     Returns ``"SPAM"``, ``"HAM"``, or ``None``.

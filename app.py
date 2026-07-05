@@ -7099,9 +7099,7 @@ def show_settings_page():
             st.info("No custom blocklist patterns configured.")
 
     st.markdown("### 🔗 Compound Rules (AND / OR / NOT)")
-    st.caption(
-        "Combine multiple conditions with boolean logic for advanced filtering."
-    )
+    st.caption("Combine multiple conditions with boolean logic for advanced filtering.")
 
     if "compounds" not in rules:
         rules["compounds"] = []
@@ -7133,17 +7131,21 @@ def show_settings_page():
                 )
             with c2:
                 value = st.text_input(
-                    "Value", key=f"cond_value_{i}", label_visibility="collapsed",
-                    placeholder="e.g. free"
+                    "Value",
+                    key=f"cond_value_{i}",
+                    label_visibility="collapsed",
+                    placeholder="e.g. free",
                 )
             with c3:
                 negate = st.checkbox("NOT", key=f"cond_negate_{i}")
             if value:
-                conditions.append({
-                    "field": field,
-                    "value": value,
-                    "negate": negate,
-                })
+                conditions.append(
+                    {
+                        "field": field,
+                        "value": value,
+                        "negate": negate,
+                    }
+                )
 
         if st.button("💾 Save Compound Rule", key="btn_save_compound") and conditions:
             from models.rule_engine import validate_compound_rules
@@ -7172,12 +7174,10 @@ def show_settings_page():
             )
             cols = st.columns([4, 1, 1])
             cols[0].markdown(
-                f"**{cr.get('label', f'Rule {idx+1}')}**: "
+                f"**{cr.get('label', f'Rule {idx + 1}')}**: "
                 f"`{conds_str}` → **{cr.get('action', 'SPAM')}**"
             )
-            cols[1].markdown(
-                "🟢 Enabled" if cr.get("enabled", True) else "🔴 Disabled"
-            )
+            cols[1].markdown("🟢 Enabled" if cr.get("enabled", True) else "🔴 Disabled")
             if cols[2].button("🗑️", key=f"del_compound_{idx}"):
                 rules["compounds"].pop(idx)
                 save_custom_rules(rules)
