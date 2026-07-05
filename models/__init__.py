@@ -23,6 +23,7 @@ from .custom_rules_manager import (
 )
 from .encrypted_report import ReportEncryptor
 from .export_feature import export_results_button
+from .language_detector import detect_language, is_language_supported
 from .message_categorizer import MessageCategorizer
 from .model_comparator import agreement_score, compare_predictions
 from .rule_engine import (
@@ -32,7 +33,6 @@ from .rule_engine import (
     validate_compound_rules,
 )
 from .sender_reputation import SenderReputation
-from .language_detector import detect_language, is_language_supported
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
 from .storage_manager import StorageManager, default_json_validator
 from .threat_analyzer import (
