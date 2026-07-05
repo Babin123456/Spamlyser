@@ -58,9 +58,9 @@ def _build_timeline_chart(history: list[dict[str, Any]]) -> go.Figure:
     df = pd.DataFrame(history)
     df["timestamp"] = pd.to_datetime(df["timestamp"])
     df = df.sort_values("timestamp")
-    df["rolling_spam_rate"] = (
-        (df["prediction"] == "SPAM").rolling(20, min_periods=1).mean() * 100
-    )
+    df["rolling_spam_rate"] = (df["prediction"] == "SPAM").rolling(
+        20, min_periods=1
+    ).mean() * 100
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
