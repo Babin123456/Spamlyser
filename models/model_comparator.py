@@ -5,7 +5,9 @@ from typing import Any
 import numpy as np
 
 
-def compare_predictions(cleaned_sms: str, models: dict[str, Any], fallback_label: str) -> list[dict[str, Any]]:
+def compare_predictions(
+    cleaned_sms: str, models: dict[str, Any], fallback_label: str
+) -> list[dict[str, Any]]:
     """Run *cleaned_sms* through every loaded model and return results.
 
     Each result dict contains:

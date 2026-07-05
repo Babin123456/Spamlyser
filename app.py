@@ -7463,9 +7463,7 @@ def main():
 
 
 def show_model_compare_page():
-    st.markdown(
-        "<div style='margin-top: 20px;'></div>", unsafe_allow_html=True
-    )
+    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
     st.markdown(
         """
     <div style="
@@ -7494,8 +7492,11 @@ def show_model_compare_page():
         key="compare_input",
     )
 
-    if st.button("🔍 Compare Models", use_container_width=True, type="primary") and sample.strip():
-        from models.model_comparator import compare_predictions, agreement_score
+    if (
+        st.button("🔍 Compare Models", use_container_width=True, type="primary")
+        and sample.strip()
+    ):
+        from models.model_comparator import agreement_score, compare_predictions
         from models.smart_preprocess import preprocess_message
 
         preprocessed = preprocess_message(sample)
@@ -7523,9 +7524,9 @@ def show_model_compare_page():
                     st.markdown(
                         f"""
                     <div class="prediction-card {card_cls}" style="padding:15px;text-align:center;">
-                        <h3 style="margin:0 0 10px 0;">{r['model']}</h3>
-                        <h2 style="margin:0;">{icon} {r['label']}</h2>
-                        <p style="margin:10px 0 0 0;opacity:0.8;">{r['confidence']:.2%}</p>
+                        <h3 style="margin:0 0 10px 0;">{r["model"]}</h3>
+                        <h2 style="margin:0;">{icon} {r["label"]}</h2>
+                        <p style="margin:10px 0 0 0;opacity:0.8;">{r["confidence"]:.2%}</p>
                     </div>
                     """,
                         unsafe_allow_html=True,
@@ -7536,13 +7537,21 @@ def show_model_compare_page():
 
             df = pd.DataFrame(results)
             if all_agree:
-                st.success(f"✅ All models agree on the classification (agreement: {ratio:.0%}).")
+                st.success(
+                    f"✅ All models agree on the classification (agreement: {ratio:.0%})."
+                )
             else:
-                st.warning(f"⚠️ Models disagree (agreement: {ratio:.0%}). Consider using Ensemble mode.")
+                st.warning(
+                    f"⚠️ Models disagree (agreement: {ratio:.0%}). Consider using Ensemble mode."
+                )
 
             st.dataframe(
                 df.style.applymap(
-                    lambda v: "background-color: #ff444440" if v == "SPAM" else "background-color: #00d4aa40",
+                    lambda v: (
+                        "background-color: #ff444440"
+                        if v == "SPAM"
+                        else "background-color: #00d4aa40"
+                    ),
                     subset=["label"],
                 ),
                 use_container_width=True,
@@ -7552,10 +7561,11 @@ def show_model_compare_page():
             st.warning("No models could be loaded. Check your setup.")
 
     if not sample.strip():
-        st.info("💡 Enter a message above and click **Compare Models** to see side-by-side predictions.")
+        st.info(
+            "💡 Enter a message above and click **Compare Models** to see side-by-side predictions."
+        )
 
-
-# Page routing logic
+    # Page routing logic
     if st.session_state.current_page == "home":
         show_home_page()
     elif st.session_state.current_page == "analyzer":

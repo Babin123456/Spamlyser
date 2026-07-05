@@ -94,9 +94,7 @@ MAX_CUSTOM_RULES_PER_LIST: int = int(
     os.getenv("SPAMLYSER_MAX_CUSTOM_RULES_PER_LIST", "500")
 )
 
-MODEL_COMPARISON_SAMPLE_SIZE: int = int(
-    os.getenv("SPAMLYSER_COMPARE_SAMPLES", "5")
-)
+MODEL_COMPARISON_SAMPLE_SIZE: int = int(os.getenv("SPAMLYSER_COMPARE_SAMPLES", "5"))
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────

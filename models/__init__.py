@@ -13,9 +13,9 @@ from .custom_rules_manager import (
 from .encrypted_report import ReportEncryptor
 from .export_feature import export_results_button
 from .message_categorizer import MessageCategorizer
+from .model_comparator import agreement_score, compare_predictions
 from .sender_reputation import SenderReputation
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
-from .model_comparator import compare_predictions, agreement_score
 from .storage_manager import StorageManager, default_json_validator
 from .threat_analyzer import (
     THREAT_CATEGORIES,
