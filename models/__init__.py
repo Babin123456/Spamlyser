@@ -32,6 +32,7 @@ from .rule_engine import (
     validate_compound_rules,
 )
 from .sender_reputation import SenderReputation
+from .language_detector import detect_language, is_language_supported
 from .simple_explainer import SPAM_KEYWORDS, SimpleExplainer
 from .storage_manager import StorageManager, default_json_validator
 from .threat_analyzer import (
@@ -61,10 +62,12 @@ __all__ = [
     "compare_predictions",
     "confidence_distribution",
     "default_json_validator",
+    "detect_language",
     "evaluate_compound_rule",
     "evaluate_condition",
     "export_results_button",
     "get_threat_specific_advice",
+    "is_language_supported",
     "latency_benchmark",
     "load_custom_rules",
     "run_all",

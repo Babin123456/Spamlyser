@@ -100,6 +100,14 @@ BENCHMARK_SAMPLE_SIZE: int = int(os.getenv("SPAMLYSER_BENCHMARK_SAMPLES", "10"))
 
 BENCHMARK_WARMUP_RUNS: int = int(os.getenv("SPAMLYSER_BENCHMARK_WARMUP", "1"))
 
+LANGUAGE_DETECTION_ENABLED: bool = (
+    os.getenv("SPAMLYSER_LANG_DETECT", "true").lower() == "true"
+)
+
+LANGUAGE_DETECTION_CONFIDENCE_THRESHOLD: float = float(
+    os.getenv("SPAMLYSER_LANG_CONFIDENCE", "0.3")
+)
+
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 def ensure_data_dir() -> Path:
