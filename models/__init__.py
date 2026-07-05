@@ -69,6 +69,6 @@ __all__ = [
     "load_custom_rules",
     "run_all",
     "save_custom_rules",
-    "validate_compound_rules",
     "summary",
+    "validate_compound_rules",
 ]

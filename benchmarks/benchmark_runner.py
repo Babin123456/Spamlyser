@@ -38,7 +38,7 @@ def _load_model(name: str) -> Any:
     """Load a model by name and return the classifier callable."""
     try:
         m = importlib.import_module(".model_loader", package="models")
-        return getattr(m, "load_model_if_needed")(name)
+        return m.load_model_if_needed(name)
     except Exception as e:
         _logger.warning("Cannot load %s: %s", name, e)
         return None
@@ -115,11 +115,7 @@ def confidence_distribution(results: pd.DataFrame) -> pd.DataFrame:
     """Count SPAM/HAM predictions per model."""
     if results.empty:
         return pd.DataFrame()
-    return (
-        results.groupby(["model", "label"])
-        .size()
-        .reset_index(name="count")
-    )
+    return results.groupby(["model", "label"]).size().reset_index(name="count")
 
 
 def run_all(output_csv: str | None = None) -> pd.DataFrame:
