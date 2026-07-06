@@ -23,6 +23,15 @@ from .custom_rules_manager import (
     save_custom_rules,
 )
 from .encrypted_report import ReportEncryptor
+from .error_boundary import (
+    ConfigurationError,
+    DataAccessError,
+    ModelLoadError,
+    PageError,
+    error_boundary,
+    render_error_panel,
+    safe_execute,
+)
 from .export_feature import export_results_button
 from .language_detector import detect_language, is_language_supported
 from .message_categorizer import MessageCategorizer
@@ -51,11 +60,16 @@ __all__ = [
     "BenchmarkHistory",
     "BenchmarkResult",
     "ConfidenceCalibrator",
+    "ConfigurationError",
+    "DataAccessError",
     "MessageCategorizer",
+    "ModelLoadError",
+    "PageError",
     "ReportEncryptor",
     "SenderReputation",
     "SimpleExplainer",
     "StorageManager",
+    "ThemePreset",
     "WebhookNotifier",
     "WordAnalyzer",
     "agreement_score",
@@ -67,6 +81,7 @@ __all__ = [
     "run_automated_benchmark",
     "default_json_validator",
     "detect_language",
+    "error_boundary",
     "evaluate_compound_rule",
     "evaluate_condition",
     "export_results_button",
