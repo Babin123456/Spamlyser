@@ -7723,6 +7723,7 @@ def show_model_compare_page():
     elif st.session_state.current_page == "trends":
         try:
             from pages.trend_analytics import render_trend_analytics
+
             render_trend_analytics()
         except ImportError as e:
             st.warning(f"Trend analytics module not available: {e}")
